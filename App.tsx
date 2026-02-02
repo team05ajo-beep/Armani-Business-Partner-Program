@@ -30,7 +30,9 @@ import {
   Briefcase,
   Compass,
   Layers,
-  BarChart3
+  BarChart3,
+  TrendingUpDown,
+  Coins
 } from 'lucide-react';
 
 // --- Komponen Navigasi ---
@@ -108,7 +110,7 @@ const MenuCard = ({
 
 // --- Modal Detail Rinci ---
 
-const FeatureDetail = ({ type, onClose }: { type: string, onClose: () => void }) => {
+const FeatureDetail = ({ type, onClose, onNavigate }: { type: string, onClose: () => void, onNavigate: (type: string) => void }) => {
   const contentMap: Record<string, React.ReactNode> = {
     "Luxury Collectors": (
       <div className="space-y-8">
@@ -208,9 +210,55 @@ const FeatureDetail = ({ type, onClose }: { type: string, onClose: () => void })
            <p className="text-[13px] text-gray-600 leading-loose">
              Mitra yang memiliki orientasi pertumbuhan jangka panjang melalui akumulasi poin prestasi (Performance Points) yang dapat dikonversi menjadi kepemilikan unit bisnis strategis di regional tertentu.
            </p>
-           <button className="w-full py-4 border border-black text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+           <button 
+             onClick={() => onNavigate("Struktur Dividen")}
+             className="w-full py-4 border border-black text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all active:scale-[0.98]"
+           >
               Pelajari Struktur Dividen
            </button>
+        </div>
+      </div>
+    ),
+    "Struktur Dividen": (
+      <div className="space-y-8">
+        <div className="p-8 bg-[#F9F7F2] border border-[#A68948]/20 space-y-6">
+          <div className="flex items-center space-x-4">
+            <Coins className="text-[#A68948]" size={28} />
+            <h6 className="text-[12px] font-bold uppercase tracking-[0.2em]">Skema Distribusi Dividen</h6>
+          </div>
+          <p className="text-[13px] text-gray-600 leading-relaxed">
+            Dividen dihitung berdasarkan akumulasi <span className="text-black font-bold">Equity Points</span> yang diperoleh dari volume aktivitas promosi global dan stabilitas jaringan mitra regional.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 border-b pb-2">Tingkat Imbal Hasil (APY)</h4>
+          <div className="grid grid-cols-1 gap-3">
+            {[
+              { level: "Silver Tier", yield: "8.5%", points: "10,000+ EP" },
+              { level: "Gold Tier", yield: "12.0%", points: "50,000+ EP" },
+              { level: "Platinum Tier", yield: "15.5%", points: "250,000+ EP" },
+              { level: "Archivist Tier", yield: "20.0%", points: "1,000,000+ EP" },
+            ].map((tier, idx) => (
+              <div key={idx} className="flex justify-between items-center p-5 border border-gray-100 hover:border-[#A68948] transition-colors group">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest block">{tier.level}</span>
+                  <span className="text-[9px] text-gray-400 uppercase">{tier.points}</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-lg brand-font text-[#A68948] group-hover:text-black transition-colors">{tier.yield}</span>
+                  <p className="text-[7px] uppercase tracking-widest font-bold text-gray-400">Quarterly Payout</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="p-6 bg-black text-white space-y-3">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#A68948]">Syarat & Ketentuan</p>
+          <p className="text-[11px] font-light opacity-70 leading-relaxed">
+            Pencairan dividen dilakukan setiap tanggal 10 di awal kuartal baru. Mitra wajib mempertahankan status "Aktif" dengan minimal 15 aktivitas bulanan.
+          </p>
         </div>
       </div>
     ),
@@ -400,7 +448,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white selection:bg-[#A68948] selection:text-white font-sans text-black overflow-x-hidden">
       {/* Modal Active */}
-      {activeModal && <FeatureDetail type={activeModal} onClose={() => setActiveModal(null)} />}
+      {activeModal && <FeatureDetail type={activeModal} onClose={() => setActiveModal(null)} onNavigate={(type) => setActiveModal(type)} />}
 
       {/* Notifikasi Floating */}
       {notification && (
