@@ -367,12 +367,20 @@ const App: React.FC = () => {
   const dailyProfit = simValue * (profitRate / 100);
   const monthlyProfit = dailyProfit * 30;
 
+  // Tautan pendaftaran resmi
+  const REGISTRATION_URL = 'https://giorgio-armani.replit.app/';
+
   // Memperbaiki tipe pada React.RefObject untuk mendukung HTMLElement | null
   const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
+  };
+
+  // Fungsi baru untuk menangani pendaftaran eksternal
+  const handleRegistration = () => {
+    window.location.href = REGISTRATION_URL;
   };
 
   useEffect(() => {
@@ -413,11 +421,11 @@ const App: React.FC = () => {
             <NavItem label="Visi & Misi" onClick={() => scrollToSection(visionRef)} />
             <NavItem label="Komunitas" onClick={() => scrollToSection(communityRef)} />
             <NavItem label="Menu" onClick={() => scrollToSection(modulesRef)} />
-            <NavItem label="Registrasi" onClick={() => scrollToSection(registrationRef)} />
+            <NavItem label="Registrasi" onClick={handleRegistration} />
             <NavItem label="Simulasi" onClick={() => scrollToSection(calculatorRef)} />
             <div className="pl-4">
               <button 
-                onClick={() => scrollToSection(registrationRef)}
+                onClick={handleRegistration}
                 className="px-6 py-2.5 bg-black text-white text-[0.6rem] font-bold uppercase tracking-[0.2em] hover:bg-[#A68948] transition-all"
               >
                 Buat Akun
@@ -439,10 +447,10 @@ const App: React.FC = () => {
             <NavItem label="Visi & Misi" onClick={() => scrollToSection(visionRef)} />
             <NavItem label="Komunitas" onClick={() => scrollToSection(communityRef)} />
             <NavItem label="Menu" onClick={() => scrollToSection(modulesRef)} />
-            <NavItem label="Registrasi" onClick={() => scrollToSection(registrationRef)} />
+            <NavItem label="Registrasi" onClick={handleRegistration} />
             <NavItem label="Simulasi" onClick={() => scrollToSection(calculatorRef)} />
             <button 
-              onClick={() => scrollToSection(registrationRef)}
+              onClick={handleRegistration}
               className="w-full py-4 bg-black text-white text-[0.7rem] font-bold uppercase tracking-[0.3em]"
             >
               Buat Akun Sekarang
@@ -456,7 +464,7 @@ const App: React.FC = () => {
         <section className="relative h-[80vh] md:h-[85vh] flex items-center justify-center bg-black overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://assets-cf.armani.com/image/upload/f_auto,q_auto,ar_16:9,w_1125,c_lfill/FW25-26_EA7_ADV_GLOBAL_FASHION_MW_02_1920_x_1080" 
+              src="https://assets-cf.armani.com/image/upload/f_auto,q_auto,ar_16:9,w_1125,c_lfill/FW25-26_EA7_ADV_GLOBAL_FASH_MW_02_1920_x_1080" 
               className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000" 
               alt="Giorgio Armani EA7 Campaign" 
             />
@@ -642,7 +650,10 @@ const App: React.FC = () => {
                  ))}
               </div>
               <div className="text-center pt-4 md:pt-6">
-                 <button className="w-full md:w-auto px-10 md:px-16 py-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] hover:bg-[#A68948] transition-all shadow-lg">
+                 <button 
+                  onClick={handleRegistration}
+                  className="w-full md:w-auto px-10 md:px-16 py-4 bg-black text-white text-[9px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] hover:bg-[#A68948] transition-all shadow-lg"
+                 >
                     Buat Akun Sekarang <ArrowRight className="inline-block ml-3" size={12} />
                  </button>
               </div>
@@ -739,7 +750,7 @@ const App: React.FC = () => {
                    </div>
                 </div>
                 <button 
-                  onClick={() => scrollToSection(registrationRef)}
+                  onClick={handleRegistration}
                   className="w-full bg-black text-white py-3 md:py-4 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] md:tracking-[0.35em] hover:bg-[#A68948] transition-all"
                 >
                   Mulai Sekarang (Registrasi Akun)
