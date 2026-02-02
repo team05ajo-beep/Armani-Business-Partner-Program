@@ -367,8 +367,11 @@ const App: React.FC = () => {
   const dailyProfit = simValue * (profitRate / 100);
   const monthlyProfit = dailyProfit * 30;
 
-  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  // Memperbaiki tipe pada React.RefObject untuk mendukung HTMLElement | null
+  const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -495,7 +498,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Section: VISI & MISI - UPDATED IMAGE */}
+        {/* Section: VISI & MISI */}
         <section ref={visionRef} className="py-20 md:py-32 px-6 md:px-10 bg-black text-white overflow-hidden relative">
             <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full opacity-5 lg:opacity-10 pointer-events-none">
                 <Globe size={600} strokeWidth={0.2} className="text-[#A68948]" />
