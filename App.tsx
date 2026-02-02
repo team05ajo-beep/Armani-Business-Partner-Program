@@ -369,8 +369,10 @@ const App: React.FC = () => {
 
   // Tautan pendaftaran resmi
   const REGISTRATION_URL = 'https://giorgio-armani.replit.app/';
-  // URL Gambar baru dari user
-  const NEW_BRAND_IMAGE = 'http://t2.gstatic.com/images?q=tbn:ANd9GcQ2MG3QTR23Q09f2tuXfQwoT1rfSg6mAQiKDErGU-DKn-5k6xjAORoRI6saqKfk3A';
+  // URL Gambar butik Armani dari user
+  const NEW_BRAND_IMAGE = 'https://i.pinimg.com/736x/aa/81/58/aa8158dbf7f009e6bcf7fc6c2d379544.jpg';
+  // URL Gambar VISI & MISI dari user
+  const VISION_BG_IMAGE = 'https://wwd.com/wp-content/uploads/2025/11/01_d1af6f.jpg?w=1000&h=563&crop=1';
 
   // Memperbaiki tipe pada React.RefObject untuk mendukung HTMLElement | null
   const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
@@ -467,7 +469,7 @@ const App: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <img 
               src={NEW_BRAND_IMAGE} 
-              className="w-full h-full object-cover opacity-70 transition-all duration-1000 scale-105" 
+              className="w-full h-full object-cover opacity-60 transition-all duration-1000 scale-105" 
               alt="Giorgio Armani Background" 
             />
           </div>
@@ -523,20 +525,32 @@ const App: React.FC = () => {
 
         {/* Section: VISI & MISI */}
         <section ref={visionRef} className="py-20 md:py-32 px-6 md:px-10 bg-black text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full opacity-5 lg:opacity-10 pointer-events-none">
+            <div className="absolute inset-0 z-0">
+                <img 
+                    src={VISION_BG_IMAGE} 
+                    className="w-full h-full object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-1000 scale-105" 
+                    alt="Visi & Misi Background" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+            </div>
+            
+            <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full opacity-5 lg:opacity-10 pointer-events-none z-10">
                 <Globe size={600} strokeWidth={0.2} className="text-[#A68948]" />
             </div>
-            <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            
+            <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center relative z-20">
                 <div className="space-y-8 md:space-y-12 relative z-10">
                     <div className="space-y-4">
-                        <span className="text-[10px] md:text-[11px] font-bold text-[#A68948] uppercase tracking-[0.4em] md:tracking-[0.5em]">OUR PHILOSOPHY</span>
-                        <h2 className="text-4xl md:text-7xl font-light brand-font uppercase tracking-tight leading-none">VISI <br/> & MISI</h2>
+                        <div className="inline-block bg-[#A68948]/20 backdrop-blur-md px-4 py-2 border-l-4 border-[#A68948]">
+                            <span className="text-[10px] md:text-[11px] font-bold text-[#A68948] uppercase tracking-[0.4em] md:tracking-[0.5em]">OUR PHILOSOPHY</span>
+                        </div>
+                        <h2 className="text-4xl md:text-7xl font-light brand-font uppercase tracking-tight leading-none drop-shadow-xl">VISI <br/> & MISI</h2>
                     </div>
                     
                     <div className="space-y-8 md:space-y-10">
                         <div className="space-y-3">
                             <h4 className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[#A68948]">Visi</h4>
-                            <p className="text-lg md:text-2xl font-light leading-relaxed italic opacity-80">
+                            <p className="text-lg md:text-2xl font-light leading-relaxed italic opacity-90 drop-shadow-md">
                                 "Menjadi platform kemitraan digital nomor satu di Indonesia yang menyatukan nilai kemewahan dengan inovasi ekonomi masa depan."
                             </p>
                         </div>
@@ -548,9 +562,11 @@ const App: React.FC = () => {
                                   { icon: ShieldCheck, text: "Menjaga standar integritas brand Giorgio Armani di setiap interaksi digital." },
                                   { icon: Users, text: "Membangun komunitas profesional dengan visi pertumbuhan finansial global." }
                                 ].map((item, idx) => (
-                                  <li key={idx} className="flex gap-4 md:gap-6 items-start">
-                                    <div className="mt-1 shrink-0"><item.icon className="w-[18px] h-[18px] md:w-5 md:h-5 text-[#A68948]" /></div>
-                                    <p className="text-[11px] md:text-[13px] font-light leading-relaxed opacity-60 uppercase tracking-widest">{item.text}</p>
+                                  <li key={idx} className="flex gap-4 md:gap-6 items-start group">
+                                    <div className="mt-1 shrink-0 p-1 bg-[#A68948]/10 rounded-full group-hover:bg-[#A68948]/30 transition-colors">
+                                      <item.icon className="w-[18px] h-[18px] md:w-5 md:h-5 text-[#A68948]" />
+                                    </div>
+                                    <p className="text-[11px] md:text-[13px] font-light leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity uppercase tracking-widest">{item.text}</p>
                                   </li>
                                 ))}
                             </ul>
@@ -558,14 +574,14 @@ const App: React.FC = () => {
                     </div>
                 </div>
                 <div className="relative mt-8 lg:mt-0">
-                    <div className="aspect-[4/5] border border-white/10 p-2 md:p-4">
+                    <div className="aspect-[4/5] border border-white/10 p-2 md:p-4 bg-white/5 backdrop-blur-sm shadow-2xl">
                         <img 
                             src="https://assets-cf.armani.com/image/upload/f_auto,q_auto,ar_16:9,w_1125,c_lfill/GA-Cross-All-Gift-01-16-9" 
-                            className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 hover:grayscale-0"
-                            alt="Giorgio Armani Vision"
+                            className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 hover:grayscale-0 shadow-inner"
+                            alt="Giorgio Armani Vision Content"
                         />
                     </div>
-                    <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 bg-[#A68948] text-black p-6 md:p-12 hidden sm:block">
+                    <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 bg-[#A68948] text-black p-6 md:p-12 hidden sm:block shadow-2xl ring-4 ring-black/50">
                         <p className="text-3xl md:text-4xl brand-font">100%</p>
                         <p className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest">Verified Integrity</p>
                     </div>
