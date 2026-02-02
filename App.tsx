@@ -369,6 +369,8 @@ const App: React.FC = () => {
 
   // Tautan pendaftaran resmi
   const REGISTRATION_URL = 'https://giorgio-armani.replit.app/';
+  // URL Gambar baru dari user
+  const NEW_BRAND_IMAGE = 'http://t2.gstatic.com/images?q=tbn:ANd9GcQ2MG3QTR23Q09f2tuXfQwoT1rfSg6mAQiKDErGU-DKn-5k6xjAORoRI6saqKfk3A';
 
   // Memperbaiki tipe pada React.RefObject untuk mendukung HTMLElement | null
   const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
@@ -461,46 +463,59 @@ const App: React.FC = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative h-[80vh] md:h-[85vh] flex items-center justify-center bg-black overflow-hidden">
+        <section className="relative h-[85vh] md:h-[95vh] flex items-center justify-center bg-black overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://assets-cf.armani.com/image/upload/f_auto,q_auto,ar_16:9,w_1125,c_lfill/FW25-26_EA7_ADV_GLOBAL_FASH_MW_02_1920_x_1080" 
-              className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000" 
-              alt="Giorgio Armani EA7 Campaign" 
+              src={NEW_BRAND_IMAGE} 
+              className="w-full h-full object-cover opacity-70 transition-all duration-1000 scale-105" 
+              alt="Giorgio Armani Background" 
             />
           </div>
-          <div className="relative z-10 max-w-5xl px-6 md:px-10 text-center text-white space-y-8 md:space-y-12 animate-fadeInUp">
-            <div className="space-y-4 md:space-y-6">
-                <div className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.6em] md:tracking-[1em] text-[#A68948]">Official Business Prospectus 2026</div>
-                <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-[0.05em] md:tracking-[0.1em] brand-font leading-tight">
-                ELEGANCE <br/> <span className="italic font-light">REDEFINED</span>
-                </h1>
-            </div>
-            
-            <div className="flex flex-col items-center space-y-6 md:space-y-8">
-                <div className="h-[1px] w-16 md:w-24 bg-[#A68948]"></div>
-                <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.6em] font-light max-w-3xl mx-auto opacity-90 leading-relaxed italic">
-                    Platform Kemitraan Digital Terverifikasi Eksklusif Indonesia.
-                </p>
-                <div className="flex space-x-8 md:space-x-12 opacity-80">
-                    <div className="text-center">
-                        <p className="text-xl md:text-2xl brand-font">12K+</p>
-                        <p className="text-[6px] md:text-[7px] uppercase tracking-widest font-bold text-[#A68948]">Partners Joined</p>
+          <div className="relative z-10 max-w-5xl px-6 md:px-10 text-center text-white animate-fadeInUp">
+            {/* Area Teks Utama dengan Latar Belakang Logo Transparan */}
+            <div className="relative py-16 md:py-24 lg:py-32 backdrop-blur-[2px] bg-black/20 border border-white/5">
+                <div className="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={NEW_BRAND_IMAGE} 
+                      className="w-[150%] h-full object-contain brightness-0 invert" 
+                      alt="Watermark Logo" 
+                    />
+                </div>
+                
+                <div className="relative z-10 space-y-6 md:space-y-12">
+                    <div className="space-y-4 md:space-y-6">
+                        <div className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.6em] md:tracking-[1.2em] text-[#A68948]">Official Business Prospectus 2026</div>
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-[0.05em] md:tracking-[0.1em] brand-font leading-tight drop-shadow-2xl">
+                        ELEGANCE <br/> <span className="italic font-light">REDEFINED</span>
+                        </h1>
                     </div>
-                    <div className="text-center">
-                        <p className="text-xl md:text-2xl brand-font">98%</p>
-                        <p className="text-[6px] md:text-[7px] uppercase tracking-widest font-bold text-[#A68948]">Growth Rate</p>
+                    
+                    <div className="flex flex-col items-center space-y-8 md:space-y-10">
+                        <div className="h-[1px] w-16 md:w-32 bg-[#A68948]"></div>
+                        <p className="text-[10px] md:text-[12px] uppercase tracking-[0.4em] md:tracking-[0.8em] font-light max-w-3xl mx-auto opacity-95 leading-relaxed italic drop-shadow-lg">
+                            Platform Kemitraan Digital Terverifikasi Eksklusif Indonesia.
+                        </p>
+                        <div className="flex space-x-10 md:space-x-16 opacity-90">
+                            <div className="text-center">
+                                <p className="text-2xl md:text-3xl brand-font">12K+</p>
+                                <p className="text-[6px] md:text-[7px] uppercase tracking-widest font-bold text-[#A68948]">Partners Joined</p>
+                            </div>
+                            <div className="text-center">
+                                <p className="text-2xl md:text-3xl brand-font">98%</p>
+                                <p className="text-[6px] md:text-[7px] uppercase tracking-widest font-bold text-[#A68948]">Growth Rate</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="pt-6 md:pt-10">
+            <div className="pt-8 md:pt-14">
                <button 
                 onClick={() => scrollToSection(prospectRef)}
-                className="group flex flex-col items-center space-y-4 mx-auto"
+                className="group flex flex-col items-center space-y-5 mx-auto"
                >
-                 <span className="text-[7px] md:text-[8px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-gray-400 group-hover:text-white transition-colors">Discover the Prospectus</span>
-                 <ChevronDown className="w-5 h-5 md:w-7 md:h-7 animate-bounce opacity-30 group-hover:opacity-100 transition-opacity" />
+                 <span className="text-[7px] md:text-[9px] uppercase tracking-[0.4em] md:tracking-[0.5em] font-bold text-gray-300 group-hover:text-white transition-colors">Discover the Prospectus</span>
+                 <ChevronDown className="w-5 h-5 md:w-8 md:h-8 animate-bounce opacity-40 group-hover:opacity-100 transition-opacity" />
                </button>
             </div>
           </div>
